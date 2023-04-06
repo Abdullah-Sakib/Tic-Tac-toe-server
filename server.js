@@ -6,8 +6,12 @@ const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
 
-app.get('/', (req, res) => {
+/* app.get('/', (req, res) => {
   res.sendFile(__dirname + '/dist/index.html');
+}); */
+
+app.get('/', (req, res) =>{
+  res.send('server is running');
 });
 
 io.on('connection', (socket) => {

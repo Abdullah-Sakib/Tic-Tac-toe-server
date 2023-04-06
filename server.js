@@ -6,6 +6,10 @@ const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
 
+const cors = require('cors');
+
+app.use(cors());
+
 /* app.get('/', (req, res) => {
   res.sendFile(__dirname + '/dist/index.html');
 }); */

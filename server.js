@@ -2,6 +2,8 @@ const express = require('express');
 const http = require('http');
 const socketio = require('socket.io');
 
+const PORT = process.env.PORT || 5000;
+
 const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
@@ -9,14 +11,19 @@ const io = socketio(server);
 const cors = require('cors');
 
 app.use(cors());
+app.use(express.json());
 
-/* app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/dist/index.html');
-}); */
+// const server = http.createServer(app);
+// const io = socketio(server);
 
-app.get('/', (req, res) =>{
-  res.send('server is running');
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + './server.js');
 });
+
+/* app.get('/', (req, res) =>{
+  res.send('server is running');
+}); */
+const players = [];
 
 io.on('connection', (socket) => {
   console.log('a user connected');
@@ -41,7 +48,7 @@ io.on('connection', (socket) => {
   });
 });
 
-const PORT = process.env.PORT || 3000;
+
 server.listen(PORT, () => {
   console.log(`listening on *:${PORT}`);
 });

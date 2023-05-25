@@ -23,9 +23,10 @@ app.get('/', (req, res) => {
 /* app.get('/', (req, res) =>{
   res.send('server is running');
 }); */
-const players = [];
+// const players = [];
 
 io.on('connection', (socket) => {
+  const players = [];
   console.log('a user connected');
   socket.on('disconnect', () => {
     console.log('user disconnected');
@@ -42,10 +43,10 @@ io.on('connection', (socket) => {
     console.log('player move', data);
     socket.broadcast.emit('player-move', data);
   });
-  socket.on('game-end', (data) => {
-    console.log('game end', data);
-    io.emit('game-end', data);
-  });
+  // socket.on('game-end', (data) => {
+  //   console.log('game end', data);
+  //   io.emit('game-end', data);
+  // });
 });
 
 
